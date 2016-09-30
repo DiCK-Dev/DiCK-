@@ -189,7 +189,7 @@ public class CombatScript : MonoBehaviour {
 		multitxt0.text = "You won! and got " + WorldControl.dropItem  + "!"; 
 
 		addItemscript.addItemScript ();
-		Debug.Log ("inventario slot 0 es " + GameControl.invSlotArray [0, 0]);
+		Debug.Log ("inventory slot is " + GameControl.invSlotArray [0, 0]);
 		if (WorldControl.enemyLust >= 90) {
 			Debug.Log ("over 90 lust victory");
 		}
