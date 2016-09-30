@@ -1,0 +1,113 @@
+# DiCK-
+Base code for DiCK and testing 
+
+using UnityEngine;
+using UnityEngine.UI;  
+using System.Collections;
+
+public class AddItemScript : MonoBehaviour {
+
+
+	// this should be a global variable
+	bool done = false; 
+	bool full; 
+	int i; 
+
+
+	//// this is for debbuging, DELETE
+	/// 
+
+	public Text text1; 
+
+
+	public void printText(){
+		text1.text = "You just added the" + WorldControl.dropItem + "Item";  
+
+	}
+
+
+	public void addItemScript()
+	{
+
+		full = true; 
+		i = 0; 
+
+		if (WorldControl.dropItem < 1000) 
+		{
+				
+			while (i < 4) {
+
+			
+				if (GameControl.invSlotArray [i, 0] == WorldControl.dropItem) 
+				{
+					if (GameControl.invSlotArray [i, 1] < 3)
+					{							
+						GameControl.invSlotArray [i, 1] = GameControl.invSlotArray [i, 1] + 1;
+						done = true; 
+						full = false;
+
+						Debug.Log ("You added an item to the slot " + i + "the ID was" + GameControl.invSlotArray [i, 0] + "You have this many in this slot: " + GameControl.invSlotArray [i, 1]);
+						break;
+
+
+					}
+				}
+				i++;
+			}
+				
+			i = 0;
+			if (done != true) {
+				i = 0; 
+					while (i < 4) 
+					{
+						if (GameControl.invSlotArray [i, 0] == 0) 
+						{
+							GameControl.invSlotArray [i, 0] = WorldControl.dropItem;
+							GameControl.invSlotArray [i, 1] = 1; 
+							full = false;
+
+						Debug.Log ("You added an item to the slot " + i + "the ID was" + GameControl.invSlotArray [i, 0] + "You have this many in this slot: " + GameControl.invSlotArray [i, 1]);
+							break; 
+
+						}
+
+						i++; 
+					}				
+				}
+				done = false; 
+
+
+		} 
+		else 
+		{
+		i = 0; 
+			while (i < 4) {
+				if (GameControl.invSlotArray [i, 0] == 0) {
+					GameControl.invSlotArray [i, 0] = WorldControl.dropItem;
+					GameControl.invSlotArray [i, 1] = 1; 
+						
+					full = false; 
+					Debug.Log ("You added an item to the slot " + i + "the ID was" + GameControl.invSlotArray [i, 0] + "You have this many in this slot: " + GameControl.invSlotArray [i, 1]);
+					break; 
+				}
+				i++;
+			}
+				
+		}
+
+		if (full == true) {
+
+			Debug.Log ("Delete item? "); 
+
+			//Here you should create the pop up asking you if you want to delete 
+			// if you click yes a new identical inventory window will open and whatever you click returns a value to delete in that slot of the array (making it a 0)
+			// using the global values for this, clicking no just ignores and makes the look variable 0 again 
+
+		}
+
+
+	}
+
+
+
+}
